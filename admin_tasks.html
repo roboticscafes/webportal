@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin - Review Tasks</title>
+</head>
+<body>
+    <h2>Student Submissions</h2>
+    <ul>
+        {% for t in tasks %}
+        <li>
+            <b>{{ t[1] }}</b> submitted: "{{ t[2] }}"
+            {% if t[3] %}
+            [<a href="{{ url_for('static', filename='uploads/' + t[3]) }}" target="_blank">View File</a>]
+            {% endif %}
+
+            {% if t[4] %}
+                <p>Rating: {{ t[4] }}</p>
+            {% else %}
+                <form method="POST">
+                    <input type="hidden" name="task_id" value="{{ t[0] }}">
+                    <input type="text" name="rating" placeholder="Give rating">
+                    <button type="submit">Submit Rating</button>
+                </form>
+            {% endif %}
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+</body>
+</html>

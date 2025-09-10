@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <h2>Welcome {{ student_name }}</h2>
+
+    <a href="{{ url_for('submit_task') }}">📌 Submit a Task</a> | 
+    <a href="{{ url_for('my_submissions') }}">📂 My Submissions</a> | 
+    <a href="{{ url_for('change_password') }}">🔑 Change Password</a> | 
+    <a href="{{ url_for('logout') }}">🚪 Logout</a>
+
+    <br><br>
+
+    <h3>Available Videos</h3>
+    <ul>
+        {% for v in videos %}
+        <li>{{ v[1] }} - <video width="320" height="240" controls>
+            <source src="{{ url_for('static', filename='uploads/' + v[2]) }}" type="video/mp4">
+        </video></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

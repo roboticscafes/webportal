@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Submissions</title>
+</head>
+<body>
+    <h2>My Submissions - {{ student_name }}</h2>
+    <ul>
+    {% for s in submissions %}
+    <li>
+        <b>Task:</b> {{ s[1] }} <br>
+        🕒 Submitted: {{ s[4] if s[4] else "Not available" }} <br>
+        {% if s[2] %}
+            📎 <a href="{{ url_for('static', filename='uploads/' + s[2]) }}" target="_blank">View File</a><br>
+        {% endif %}
+        {% if s[3] %}
+            ⭐ Rating: {{ s[3] }} <br>
+            🕒 Rated: {{ s[5] if s[5] else "Not yet rated" }}
+        {% else %}
+            ⏳ Rating pending
+        {% endif %}
+    </li>
+    <hr>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

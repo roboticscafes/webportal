@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Task</title>
+</head>
+<body>
+    <h2>Submit Task - {{ student_name }}</h2>
+    <form method="POST" enctype="multipart/form-data">
+        Task Description:<br>
+        <textarea name="task_text" required></textarea><br><br>
+        Upload File: <input type="file" name="file"><br><br>
+        <button type="submit">Submit Task</button>
+    </form>
+</body>
+</html>

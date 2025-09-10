@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h2>Welcome Admin {{ admin_name }}</h2>
+
+    <a href="{{ url_for('admin_tasks') }}">📋 Review Student Tasks</a> | 
+    <a href="{{ url_for('change_password') }}">🔑 Change Password</a> |
+    <a href="{{ url_for('logout') }}">🚪 Logout</a>
+
+    <br><br>
+
+    <!-- Upload Video -->
+    <h3>Upload Video</h3>
+    <form method="POST" enctype="multipart/form-data">
+        Title: <input type="text" name="title" required><br><br>
+        File: <input type="file" name="file" required><br><br>
+        <button type="submit">Upload</button>
+    </form>
+
+    <h3>Uploaded Videos</h3>
+    <ul>
+        {% for v in videos %}
+        <li>{{ v[1] }} - <video width="320" height="240" controls>
+            <source src="{{ url_for('static', filename='uploads/' + v[2]) }}" type="video/mp4">
+        </video></li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <!-- Add Student -->
+    <h3>Add New Student</h3>
+    <form method="POST">
+        Username: <input type="text" name="student_username" required><br><br>
+        Password: <input type="password" name="student_password" required><br><br>
+        <button type="submit">Add Student</button>
+    </form>
+
+    <h3>Student List</h3>
+    <ul>
+        {% for s in students %}
+        <li>{{ s[1] }} (ID: {{ s[0] }})</li>
+        {% endfor %}
+    </ul>
+    <h3>Student List</h3>
+<ul>
+    {% for s in students %}
+    <li>
+        {{ s[1] }} (ID: {{ s[0] }})
+        - <a href="{{ url_for('reset_password', student_id=s[0]) }}">🔑 Reset Password</a>
+    </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
